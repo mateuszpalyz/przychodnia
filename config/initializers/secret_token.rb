@@ -24,4 +24,4 @@ def secure_token
   end
 end
 
-przychodnia::Application.config.secret_key_base = secure_token
+Przychodnia::Application.config.secret_key_base = secure_token
