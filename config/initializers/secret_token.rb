@@ -9,4 +9,19 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-Przychodnia::Application.config.secret_key_base = '334d3cff2bc1f4ab8659946355435dea89bf110a14da2062dea2f09dd450df8e4a1d0e432ee6d86a72956e7e159c33680d2fa145ed290e3d3be287924b7e85e2'
+require 'securerandom'
+
+def secure_token
+  token_file = Rails.root.join('.secret')
+  if File.exist?(token_file)
+    # Use the existing token.
+    File.read(token_file).chomp
+  else
+    # Generate a new token and store it in token_file.
+    token = SecureRandom.hex(64)
+    File.write(token_file, token)
+    token
+  end
+end
+
+SampleApp::Application.config.secret_key_base = secure_token
