@@ -1,0 +1,15 @@
+<% show_name = @user.name + ' ' + @user.surname %>
+<% provide(:title, show_name) %>
+<div class="row">
+  <aside class="span4">
+    <section>
+      <h1>
+        <%= image_tag("doctor.png", alt: "doctor", class: "avatar") %>
+        dr <%= show_name %>
+      </h1>
+    <section>
+    <%= @user.specialty  %>
+    </br>
+    wiek: <%= @user.age  %>
+  </aside>
+</div>

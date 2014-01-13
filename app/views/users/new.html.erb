@@ -1,2 +1,35 @@
-<h1>Users#new</h1>
-<p>Find me in app/views/users/new.html.erb</p>
+<% provide(:title, 'Dodaj nowego lekarza') %>
+<h1>Dodaj nowego lekarza</h1>
+
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for(@user) do |f| %>
+      <%= render 'shared/error_messages' %>
+      
+      <%= f.label :name, "Imię" %>
+      <%= f.text_field :name %>
+
+      <%= f.label :surname, "Nazwisko" %>
+      <%= f.text_field :surname %>
+
+      <%= f.label :email %>
+      <%= f.text_field :email %>
+
+      <%= f.label :age, "Wiek" %>
+      <%= f.select(:age, (18..99).to_a, {}, class: "span1" )%>
+
+      <%= f.label :specialty, "Specjalność" %>
+      <%= f.text_field :specialty %>
+
+      <%= f.label :password, "Hasło" %>
+      <%= f.password_field :password %>
+
+      <%= f.label :password_confirmation, "Powtórz hasło" %>
+      <%= f.password_field :password_confirmation %>
+      </div>
+</div>
+<div class="center">
+      <%= f.submit "Utwórz konto", class: "btn btn-large btn-primary" %>
+    <% end %>
+</div>
+  

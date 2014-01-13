@@ -1,0 +1,16 @@
+<% if @user.errors.any? %>
+  <% eng_errors = ["can't be blank", "doesn't match Password"] %>
+  <div id="error_explanation">
+    <div class="alert alert-error">
+      Ilość pól zawierających błędy: <%= @user.errors.messages.count %>.
+    </div>
+    <ul>
+    <% @user.errors.messages.each do |attr, msg| %>
+      <li>* <% msg.each do |x| %>
+            <%= "#{x}." unless eng_errors.include?(x) %>
+            <% end %>
+      </li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
