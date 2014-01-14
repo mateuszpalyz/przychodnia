@@ -1,5 +1,30 @@
+<% @users = User.all %>
 <% provide(:title, 'O nas') %>
 <h1>O nas</h1>
 <p>
-  you shall not pass
+  Nasz zespół to wykwalifikowani specjaliści, którzy pomogą w każdym medzycznym problemie.
+</p>
+</br>
+
+<ul class="users">
+  <% @users.each do |user| %>
+     <% unless user.admin %>
+      <li>
+
+        <%= image_tag("doctor.png", alt: "doctor", class: "avatar") %>
+        <%= "dr #{user.name} #{user.surname}" %>
+        </br>
+        </br>
+        Specjalizacja
+        </br>
+        <%= user.specialty %>
+      </li>
+    <% end %>
+  <% end %>
+</ul>
+
+</br>
+</br>
+<p>
+  Adres: <%= link_to "iMed ul. Kaziemierza Wielkiego 3/7, Wrocław", "http://goo.gl/maps/Rtiat" %>
 </p>

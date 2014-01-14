@@ -4,10 +4,11 @@
   <h2>
     System informatyczny dla lekarzy oraz pacjentów przychodni iMed
   </h2>
-
+  <% unless signed_in? %>
   <%= link_to "Zaloguj się teraz", signin_path, class: "btn btn-large btn-primary" %>
+  
 </br>
-  <%= link_to "tymczasowy link dla zalogowanego admina", signup_path %>
+<% end %>
 </div>
 
 <%= image_tag("health.png", alt: "health", class: "style_img") %>

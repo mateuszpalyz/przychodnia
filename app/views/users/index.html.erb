@@ -1,0 +1,31 @@
+<% provide(:title, 'Lekarze') %>
+<h1>Konta lekarzy</h1>
+
+<ul class="users">
+  <% @users.each do |user| %>
+     <% unless user.admin %>
+      <li>
+
+        <%= image_tag("doctor.png", alt: "doctor", class: "avatar") %>
+        <%= "dr #{user.name} #{user.surname}" %>
+        <% if current_user.admin? && !current_user?(user) %>
+          <%= link_to "usuń konto", user, method: :delete, data: { confirm: "Jesteś pewien?" } %>
+        <% end %>
+        </br>
+        <%= "Email: #{user.email}" %>
+        </br>
+        </br>
+        Specjalizacja
+        </br>
+        <%= user.specialty %>
+      </li>
+    <% end %>
+  <% end %>
+</ul>
+
+<% if current_user.admin? %>
+  </br>
+  <div class="left">
+      <%= button_to "Dodaj konto", signup_path, :method => "get", class: "btn btn-large btn-primary" %>
+  </div>
+<% end %>

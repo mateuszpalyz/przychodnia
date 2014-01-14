@@ -8,6 +8,11 @@
               <li><%= link_to "Pomoc", help_path %></li>
               <% if signed_in? %>
 
+                <% if current_user.admin? %>
+                  <li><%= link_to "Lekarze", users_path %></li>
+                  <li><%= link_to "Pacjenci", '#' %></li>
+                <% else %>
+
                 <li id="fat-menu" class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   Pacjenci <b class="caret"></b>
@@ -18,13 +23,15 @@
                 </ul>
               </li>
 
+              <% end %>
+
               <li id="fat-menu" class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   Konto <b class="caret"></b>
                 </a>
                 <ul class="dropdown-menu">
                   <li><%= link_to "Profil", current_user %></li>
-                  <li><%= link_to "Ustawienia", '#' %></li>
+                  <li><%= link_to "Ustawienia", edit_user_path(current_user) %></li>
                   <li class="divider"></li>
                   <li>
                     <%= link_to "Wyloguj", signout_path, method: "delete" %>

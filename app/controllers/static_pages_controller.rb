@@ -5,9 +5,9 @@ class StaticPagesController < ApplicationController
   def help
   end
 
-  def about
+  def policy
   end
 
-  def policy
+  def about
   end
 end

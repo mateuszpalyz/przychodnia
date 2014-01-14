@@ -4,8 +4,13 @@
   <aside class="span4">
     <section>
       <h1>
-        <%= image_tag("doctor.png", alt: "doctor", class: "avatar") %>
-        dr <%= show_name %>
+        <% if @user.admin %>
+          <%= image_tag("admin.png", alt: "doctor", class: "avatar") %>
+          <%= show_name %>
+        <% else %>
+          <%= image_tag("doctor.png", alt: "doctor", class: "avatar") %>
+          dr <%= show_name %>
+        <% end %>
       </h1>
     <section>
     <%= @user.specialty  %>
