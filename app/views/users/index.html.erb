@@ -9,7 +9,7 @@
         <%= image_tag("doctor.png", alt: "doctor", class: "avatar") %>
         <%= "dr #{user.name} #{user.surname}" %>
         <% if current_user.admin? && !current_user?(user) %>
-          <%= link_to "usuń konto", user, method: :delete, data: { confirm: "Jesteś pewien?" } %>
+          |<%= link_to " usuń konto", user, method: :delete, data: { confirm: "Jesteś pewien?" } %>
         <% end %>
         </br>
         <%= "Email: #{user.email}" %>

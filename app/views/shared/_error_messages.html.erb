@@ -1,11 +1,18 @@
-<% if @user.errors.any? %>
+<%if @user == nil %>
+<%  acc = @patient %>
+<% else %> 
+  <% acc = @user %>
+<% end %>
+
+<% unless acc == nil %>
+<% if acc.errors.any? %>
   <% eng_errors = ["can't be blank", "doesn't match Password"] %>
   <div id="error_explanation">
     <div class="alert alert-error">
-      Ilość pól zawierających błędy: <%= @user.errors.messages.count %>.
+      Ilość pól zawierających błędy: <%= acc.errors.messages.count %>.
     </div>
     <ul>
-    <% @user.errors.messages.each do |attr, msg| %>
+    <% acc.errors.messages.each do |attr, msg| %>
       <li>* <% msg.each do |x| %>
             <%= "#{x}." unless eng_errors.include?(x) %>
             <% end %>
@@ -13,4 +20,5 @@
     <% end %>
     </ul>
   </div>
+<% end %>
 <% end %>

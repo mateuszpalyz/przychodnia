@@ -1,0 +1,15 @@
+<% provide(:title, 'Wyszukaj pacjenta') %>
+<h1>Wyszukaj pacjenta</h1>
+
+<div class="row">
+  <div class="span6 offset3">
+      <%= form_tag find_path, method: :get do %>
+      <%= label_tag :pesel, "Podaj PESEL" %>
+      <%= text_field_tag :pesel %>
+  </div>
+</div>
+<div class="center">
+      <%= submit_tag "Wyszukaj", class: "btn btn-large btn-primary" %>
+    <% end %>
+</div>
+  

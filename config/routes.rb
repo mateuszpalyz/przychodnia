@@ -1,5 +1,12 @@
 Przychodnia::Application.routes.draw do
+  resources :patients do
+    collection do
+     get :search
+    end
+  end
+  match '/find',    to: 'patients#find',       via: 'get'
   resources :users
+  resources :patients
   resources :sessions, only: [:new, :create, :destroy]
   root  'static_pages#home'
   match '/signup',  to: 'users#new',           via: 'get'
@@ -7,7 +14,9 @@ Przychodnia::Application.routes.draw do
   match '/signout', to: 'sessions#destroy',    via: 'delete'
   match '/help',    to: 'static_pages#help',   via: 'get'
   match '/policy',  to: 'static_pages#policy', via: 'get'
-  match '/about',   to: 'static_pages#about',  via: 'get' 
+  match '/about',   to: 'static_pages#about',  via: 'get'
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

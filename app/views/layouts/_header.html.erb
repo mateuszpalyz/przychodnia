@@ -10,7 +10,7 @@
 
                 <% if current_user.admin? %>
                   <li><%= link_to "Lekarze", users_path %></li>
-                  <li><%= link_to "Pacjenci", '#' %></li>
+                  <li><%= link_to "Pacjenci", patients_path %></li>
                 <% else %>
 
                 <li id="fat-menu" class="dropdown">
@@ -19,7 +19,8 @@
                 </a>
                 <ul class="dropdown-menu">
                   <li><%= link_to "Moi", '#' %></li>
-                  <li><%= link_to "Wyszukaj", '#' %></li>
+                  <li><%= link_to "Wyszukaj", search_patients_path %></li>
+                  <li><%= link_to "Nowy", new_patient_path %></li>
                 </ul>
               </li>
 

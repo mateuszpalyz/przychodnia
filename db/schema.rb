@@ -11,7 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140113183200) do
+ActiveRecord::Schema.define(version: 20140115065720) do
+
+  create_table "patients", force: true do |t|
+    t.string   "name"
+    t.string   "surname"
+    t.string   "pesel"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "password_digest"
+  end
+
+  add_index "patients", ["pesel"], name: "index_patients_on_pesel", unique: true
 
   create_table "users", force: true do |t|
     t.string   "name"
@@ -28,5 +39,27 @@ ActiveRecord::Schema.define(version: 20140113183200) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["remember_token"], name: "index_users_on_remember_token"
+
+  create_table "visits", force: true do |t|
+    t.string   "cause"
+    t.string   "psymptom"
+    t.string   "time_symptom"
+    t.string   "illness_chage"
+    t.string   "symptom_type"
+    t.string   "time_illness"
+    t.string   "freq_illness"
+    t.string   "care"
+    t.string   "dsymptom"
+    t.string   "illness"
+    t.string   "drugs"
+    t.date     "next_visit"
+    t.boolean  "changed"
+    t.integer  "user_id"
+    t.integer  "patient_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "visits", ["patient_id"], name: "index_visits_on_patient_id"
 
 end

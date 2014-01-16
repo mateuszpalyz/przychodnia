@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  has_many :visits
   before_save { self.email = email.downcase }
   before_create :create_remember_token
 

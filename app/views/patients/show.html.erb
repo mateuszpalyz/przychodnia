@@ -1,0 +1,23 @@
+<% show_name = @patient.name + ' ' + @patient.surname %>
+<% provide(:title, show_name) %>
+
+<div class="row">
+  <aside class="span4">
+    <section>
+      <h1>
+        <%= image_tag("patient.png", alt: "patient", class: "avatar") %>
+        <%= show_name %>
+      </h1>
+    <section>
+    PESEL: <%= @patient.pesel %>
+  </br>
+  <% unless current_user.admin? %>
+  <%= link_to "edytuj", edit_patient_path(@patient), method: :get %>
+  <% end %>        
+  </aside>
+</div>
+
+<div class="center">
+  </br>
+  <%= "karta  założona: #{@patient.created_at.strftime("%d.%m.%Y godz.%H:%M")}" %>
+<div>
