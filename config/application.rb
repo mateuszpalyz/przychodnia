@@ -26,5 +26,6 @@ module Przychodnia
     # config.i18n.default_locale = :de
     config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif)
     config.time_zone = 'Warsaw'
+    $CURRENT_PATIENT = 0
   end
 end

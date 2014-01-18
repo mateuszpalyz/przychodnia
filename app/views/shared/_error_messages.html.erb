@@ -1,7 +1,9 @@
-<%if @user == nil %>
-<%  acc = @patient %>
-<% else %> 
-  <% acc = @user %>
+<%if @user != nil %>
+<%  acc = @user %>
+<% elsif @patient != nil %> 
+  <% acc = @patient %>
+<% else %>
+  <% acc = @visit %>
 <% end %>
 
 <% unless acc == nil %>

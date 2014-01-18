@@ -26,6 +26,8 @@ class PatientsController < ApplicationController
 
   def show
     @patient = Patient.find(params[:id])
+    @visits = @patient.visits.paginate(page: params[:page])
+    $CURRENT_PATIENT = params[:id]
   end
 
   def edit

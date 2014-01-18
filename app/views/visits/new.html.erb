@@ -1,0 +1,57 @@
+<% provide(:title, 'Dodaj nową wizytę') %>
+<h1>Dodaj nową wizytę</h1>
+
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for @visit, :url => {:action => :create, :patient => @pat}  do |f| %>
+      <%= render 'shared/error_messages' %>
+
+      <p class="center"><b>Główne dolegliwości</b></p>
+      
+      <%= f.label :cause, "Przyczyna zgłoszenia" %>
+      <%= f.text_area :cause %>
+
+      <%= f.label :psymptom, "Objawy zauważone przez chorego" %>
+      <%= f.text_area :psymptom %>
+
+      <%= f.label :time_symptom, "Czas wystąpienia pierwszych objawów" %>
+      <%= f.text_area :time_symptom %>
+
+      <%= f.label :illness_chage, "Dynamika zmian chorobowych" %>
+      <%= f.text_area :illness_chage %>
+
+      <%= f.label :symptom_type, "Cechy zgłoszonych objawów" %>
+      <%= f.text_area :symptom_type %>
+
+      <p class="center"><b>Dotychczasowy przebieg choroby</b></p>
+
+      <%= f.label :time_illness, "Czas wystąpienia choroby" %>
+      <%= f.text_area :time_illness %>
+
+      <%= f.label :freq_illness, "Częstość występowania dolegliwości" %>
+      <%= f.text_area :freq_illness %>
+
+      <%= f.label :care, "Dotychczasowa opieka medyczna" %>
+      <%= f.text_area :care %>
+
+      <p class="center"><b>Wnioski z wizyty</b></p>
+
+      <%= f.label :dsymptom, "Wnioski na podstawie badania lekarskiego" %>
+      <%= f.text_area :dsymptom %>
+
+      <%= f.label :illness, "Diagnoza" %>
+      <%= f.text_area :illness %>
+
+      <%= f.label :drugs, "Przepisane leki" %>
+      <%= f.text_area :drugs %>
+
+      <%= f.label :next_visit, "Data kolejnej wizyty (opcjonalne)" %>
+      <%= f.datetime_select :next_visit %>
+
+      </div>
+</div>
+<div class="center">
+      <%= f.submit "Dodaj wizytę", class: "btn btn-large btn-primary" %>
+    <% end %>
+</div>
+  

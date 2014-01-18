@@ -1,0 +1,7 @@
+<li>
+  <span class="content"><b>Diagnoza:</b> <%= visit.illness %></span>
+  <span class="content"><b>Przepisane leki:</b> <%= visit.drugs %></span>
+  <span class="timestamp">
+    Data wizyty: <%= visit.created_at.strftime("%d.%m.%Y godz.%H:%M") %>
+  </span>
+</li>

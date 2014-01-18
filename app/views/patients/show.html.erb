@@ -12,9 +12,22 @@
     PESEL: <%= @patient.pesel %>
   </br>
   <% unless current_user.admin? %>
-  <%= link_to "edytuj", edit_patient_path(@patient), method: :get %>
-  <% end %>        
+  <%= link_to "edytuj", edit_patient_path(@patient) %>
+  </br>
+  <% end %>
+  <%= link_to "nowa wizyta", "#{new_visit_path}?patient=#{@patient.id}" %>        
   </aside>
+  <div class="span8">
+    <% if @patient.visits.any? %>
+      </br>
+      </br>
+      <h3>Wizyty (<%= @patient.visits.count %>)</h3>
+      <ol class="microposts">
+        <%= render @visits %>
+      </ol>
+      <%= will_paginate @visits %> 
+    <% end %>
+  </div>
 </div>
 
 <div class="center">

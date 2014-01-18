@@ -1,4 +1,5 @@
 Przychodnia::Application.routes.draw do
+  resources :visits
   resources :patients do
     collection do
      get :search

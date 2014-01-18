@@ -13,8 +13,8 @@
       <li>
 
         <%= image_tag("patient.png", alt: "patient", class: "avatar") %>
-        <%= link_to "#{user.name} #{user.surname}" , patient_path(user), method: :get %>
-        |<%= link_to " edytuj pacjenta", edit_patient_path(user), method: :get %>
+        <%= link_to "#{user.name} #{user.surname}" , patient_path(user) %>
+        |<%= link_to " edytuj pacjenta", edit_patient_path(user) %>
         |<%= link_to " usuń pacjenta", user, method: :delete, data: { confirm: "Jesteś pewien?" } %>
         </br>
         <%= "PESEL: #{user.pesel}" %>
