@@ -12,7 +12,7 @@ class CreateVisits < ActiveRecord::Migration
       t.string :dsymptom
       t.string :illness
       t.string :drugs
-      t.date :next_visit
+      t.datetime :next_visit
       t.boolean :changed
       t.integer :user_id
       t.integer :patient_id
