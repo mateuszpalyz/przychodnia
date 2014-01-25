@@ -1,0 +1,25 @@
+<% provide(:title, "Dla Pacjenta") %>
+<h1>Uzyskaj informacje o swojej ostatniej wizycie</h1>
+
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_tag check_path, method: :post do %>
+      
+      <%= label_tag :pesel, "PESEL" %>
+      <%= text_field_tag :pesel %>
+
+      <%= label_tag :password, "Hasło" %>
+      <%= password_field_tag :password %>
+
+      </div>
+</div>
+<div class="center">
+      <%= submit_tag "Wyślij", class: "btn btn-large btn-primary" %>
+    <% end %>
+</div>
+
+<div class="row">
+  <div class="span6 offset3">
+    <p style= "margin-top: 30px"> Problem z dostępem do danych? <%= link_to "Skontaktuj się z administratorem" , help_path %> </p>
+    </div>
+</div>

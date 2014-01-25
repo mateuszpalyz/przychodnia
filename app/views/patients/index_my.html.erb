@@ -1,9 +1,5 @@
-<% provide(:title, 'Pacjenci') %>
-<h1>Karty pacjentów</h1>
-
-<div class="left">
-  <%= button_to "Wyszukaj pacjenta", search_patients_path, :method => "get", class: "btn btn-large btn-primary" %>
-</div>
+<% provide(:title, 'Moi pacjenci') %>
+<h1>Karty moich pacjentów</h1>
 
 <%= will_paginate next_label: ">", previous_label: "<", inner_window: 1, outer_window: 0 %>
 
@@ -15,14 +11,13 @@
         <%= image_tag("patient.png", alt: "patient", class: "avatar") %>
         <%= link_to "#{user.name} #{user.surname}" , patient_path(user) %>
         |<%= link_to " edytuj pacjenta", edit_patient_path(user) %>
-        |<%= link_to " usuń pacjenta", user, method: :delete, data: { confirm: "Jesteś pewien?" } %>
         </br>
         <%= "PESEL: #{user.pesel}" %>
         </br>
         </br>
         <%= "karta  założona: #{user.created_at.strftime("%d.%m.%Y godz.%H:%M")}" %>
         </br>
-        <% last_visit = Visit.find_by_patient_id(user) %>
+        <% last_visit = Visit.find_by_patient_id(user.id) %>
         <% last_visit = last_visit.created_at.strftime("%d.%m.%Y godz.%H:%M") if last_visit %>
         <% last_visit = "brak" unless last_visit %>
         <%= "ostatnia wizyta: #{last_visit}" %>
@@ -32,8 +27,3 @@
 </ul>
 
 <%= will_paginate next_label: ">", previous_label: "<", inner_window: 1, outer_window: 0 %>
-
-</br>
-<div class="left">
-  <%= button_to "Dodaj pacjenta", new_patient_path, :method => "get", class: "btn btn-large btn-primary" %>
-</div>

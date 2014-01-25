@@ -1,11 +1,10 @@
 class VisitsController < ApplicationController
-
-  def index
-    @users = User.all
-  end
+  before_action :signed_in_user, only: [:new, :create, :show]
+  before_action :admin_user,     only: [:destroy, :edit, :update]
 
   def show
-    @user = User.find(params[:id])
+    @visit = Visit.find(params[:id])
+    @patient = Patient.find(@visit.patient_id)
   end
 
   def new
@@ -19,7 +18,7 @@ class VisitsController < ApplicationController
     @visit.user = current_user
     if @visit.save
       flash[:success] = "Wizyta została utworzona pomyślnie"
-      redirect_to users_path
+      redirect_to patient_path(patient)
     else
       @pat = params[:patient]
       render :action => 'new'
@@ -27,22 +26,25 @@ class VisitsController < ApplicationController
   end
 
   def edit
+    @visit = Visit.find(params[:id])
   end
 
   def update
-    @user = User.find(params[:id])
-    if @user.update_attributes(user_params)
-      flash[:success] = "Konto zostało zaktualizowane"
-      redirect_to @user
+    @visit = Visit.find(params[:id])
+    if @visit.update_attributes(user_params)
+      flash[:success] = "Wizyta została zaktualizowana"
+      redirect_to @visit
     else
       render 'edit'
     end
   end
 
   def destroy
-    User.find(params[:id]).destroy
-    flash[:success] = "Konto usunięte."
-    redirect_to users_url
+    @visit = Visit.find(params[:id])
+    @patient = Patient.find(@visit.patient_id)
+    @visit.destroy
+    flash[:success] = "Wizyta została usunięta."
+    redirect_to @patient
   end
 
   private

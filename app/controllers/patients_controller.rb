@@ -1,9 +1,14 @@
 class PatientsController < ApplicationController
-  before_action :signed_in_user, only: [:new, :create, :show, :index, :edit, :update, :search, :find]
+  before_action :signed_in_user, only: [:new, :create, :show, :index, :edit, :update, :search, :find, :index_my]
   before_action :admin_user,     only: [:index,:destroy]
 
   def index
     @patients = Patient.paginate(page: params[:page], order: 'created_at DESC')
+  end
+
+  def index_my
+    @visits = Visit.where(user_id: current_user.id)
+    @patients = Patient.where(id: @visits.map(&:patient_id)).paginate(page: params[:page], order: 'created_at DESC')
   end
 
   def new

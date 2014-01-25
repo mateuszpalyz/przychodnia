@@ -1,9 +1,13 @@
 class Visit < ActiveRecord::Base
+  self.per_page = 10
   belongs_to :user
   belongs_to :patient
   default_scope -> { order('created_at DESC') }
    validates :patient_id, 
-   presence: { message: "Wizyta musi zostać dodana poprzez łącze dodaj wizytę na karcie pacjenta, niedozwolona zmiana URL" }
+   presence: { message: "Błąd spróbuj ponownie" }
+
+   validates :user_id, 
+   presence: { message: "Błąd spróbuj ponownie" }
 
    validates :cause,      
    presence: { message: "Przyczyna zgłoszenia nie może być pusta" }, 

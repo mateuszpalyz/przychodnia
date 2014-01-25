@@ -11,11 +11,15 @@
     <section>
     PESEL: <%= @patient.pesel %>
   </br>
-  <% unless current_user.admin? %>
   <%= link_to "edytuj", edit_patient_path(@patient) %>
   </br>
+  <% if current_user.admin? %>
+  <%= link_to "usuń", @patient, method: :delete, data: { confirm: "Jesteś pewien?" } %>
+  </br>
   <% end %>
-  <%= link_to "nowa wizyta", "#{new_visit_path}?patient=#{@patient.id}" %>        
+  <% unless current_user.admin? %>
+  <%= link_to "nowa wizyta", "#{new_visit_path}?patient=#{@patient.id}" %>
+  <% end %>        
   </aside>
   <div class="span8">
     <% if @patient.visits.any? %>

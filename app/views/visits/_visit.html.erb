@@ -1,7 +1,24 @@
+<% unless doctor = User.find_by_id(visit.user_id) %>
+  <% name = "usunięte konto" %>
+  <% surname ='' %>
+<% else %>
+  <% name = doctor.name %>
+  <% surname = doctor.surname %>
+<% end %>
+
 <li>
   <span class="content"><b>Diagnoza:</b> <%= visit.illness %></span>
   <span class="content"><b>Przepisane leki:</b> <%= visit.drugs %></span>
   <span class="timestamp">
+    Wprowadzone przez: <%= name  %>
+    <%= surname  %>
+  </span></br>
+  <span class="timestamp">
     Data wizyty: <%= visit.created_at.strftime("%d.%m.%Y godz.%H:%M") %>
   </span>
+  <%= link_to "więcej...", visit %>
+  <% if current_user.admin? %>
+  |<%= link_to " edytuj", edit_visit_path %>
+  |<%= link_to " usuń", visit, method: :delete, data: { confirm: "Jesteś pewien?" } %> 
+  <% end %>
 </li>

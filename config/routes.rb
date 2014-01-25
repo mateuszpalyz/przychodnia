@@ -3,6 +3,7 @@ Przychodnia::Application.routes.draw do
   resources :patients do
     collection do
      get :search
+     get :index_my
     end
   end
   match '/find',    to: 'patients#find',       via: 'get'
@@ -16,6 +17,8 @@ Przychodnia::Application.routes.draw do
   match '/help',    to: 'static_pages#help',   via: 'get'
   match '/policy',  to: 'static_pages#policy', via: 'get'
   match '/about',   to: 'static_pages#about',  via: 'get'
+  match '/for_patient', to: 'static_pages#for_patient', via: 'get'
+  match '/check', to: 'static_pages#check', via: 'post'
 
 
   # The priority is based upon order of creation: first created -> highest priority.

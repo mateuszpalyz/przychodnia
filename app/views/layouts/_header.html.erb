@@ -5,6 +5,9 @@
           <nav>
             <ul class="nav pull-right">
               <li><%= link_to "Strona główna", root_path %></li>
+              <% unless signed_in? %>
+                <li><%= link_to "Dla Pacjenta", for_patient_path %></li>
+              <% end %> 
               <li><%= link_to "Pomoc", help_path %></li>
               <% if signed_in? %>
 
@@ -18,7 +21,7 @@
                   Pacjenci <b class="caret"></b>
                 </a>
                 <ul class="dropdown-menu">
-                  <li><%= link_to "Moi", '#' %></li>
+                  <li><%= link_to "Moi", index_my_patients_path %></li>
                   <li><%= link_to "Wyszukaj", search_patients_path %></li>
                   <li><%= link_to "Nowy", new_patient_path %></li>
                 </ul>

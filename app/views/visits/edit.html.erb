@@ -1,9 +1,9 @@
-<% provide(:title, 'Dodaj nową wizytę') %>
-<h1>Dodaj nową wizytę</h1>
+<% provide(:title, 'Edytuj wizytę') %>
+<h1>Edytuj wizytę</h1>
 
 <div class="row">
   <div class="span6 offset3">
-    <%= form_for @visit, :url => {:action => :create, :patient => @pat}  do |f| %>
+    <%= form_for @visit do |f| %>
       <%= render 'shared/error_messages' %>
 
       <p class="center"><b>Główne dolegliwości</b></p>
@@ -51,7 +51,7 @@
       </div>
 </div>
 <div class="center">
-      <%= f.submit "Dodaj wizytę", class: "btn btn-large btn-primary" %>
+      <%= f.submit "Zapisz", class: "btn btn-large btn-primary" %>
     <% end %>
 </div>
   

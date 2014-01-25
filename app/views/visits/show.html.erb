@@ -1,0 +1,99 @@
+<% provide(:title, "Wizyta z #{@visit.created_at.strftime("%d.%m.%Y godz.%H:%M")}") %>
+
+<% unless doctor = User.find_by_id(@visit.user_id) %>
+  <% name = "usunięte konto" %>
+  <% surname ='' %>
+<% else %>
+  <% name = doctor.name %>
+  <% surname = doctor.surname %>
+<% end %>
+
+<div class="row">
+  <div class="span2">
+    <%= image_tag("visit.png", alt: "visit", class: "avatar") %>
+  </div>
+  <div class="span10">
+    <section>
+      <h3>
+        <%= link_to "#{@patient.name} #{@patient.surname} ", @patient %>
+        <%= "wizyta z #{@visit.created_at.strftime("%d.%m.%Y godz.%H:%M")}" %>
+      </br>
+        <%= "lekarz prowadzący: #{name} #{surname}" %>
+        <hr>
+      </h3>
+    <section>
+
+    <h4>Główne dolegliwości</h4>
+    <hr>
+
+    <div>
+      <b>Przyczyna zgłoszenia:</b></br>
+      <%= @visit.cause %>
+    </div></br>
+
+    <div>
+      <b>Objawy zauważone przez chorego:</b></br>
+      <%= @visit.psymptom %>
+    </div></br>
+
+    <div>
+      <b>Czas wystąpienia pierwszych objawów:</b></br>
+      <%= @visit.time_symptom %>
+    </div></br>
+
+    <div>
+      <b>Dynamika zmian chorobowych:</b></br>
+      <%= @visit.illness_chage %>
+    </div></br>
+    
+    <div>
+      <b>Cechy zgłoszonych objawów:</b></br>
+      <%= @visit.symptom_type %>
+    </div></br>
+
+    </br>
+    <h4>Dotychczasowy przebieg choroby</h4>
+    <hr>  
+
+    <div>
+      <b>Czas wystąpienia choroby:</b></br>
+      <%= @visit.time_illness %>
+    </div></br>
+
+    <div>
+      <b>Częstość występowania dolegliwości:</b></br>
+      <%= @visit.freq_illness %>
+    </div> </br> 
+      
+
+    <div>
+      <b>Dotychczasowa opieka medyczna:</b></br>
+      <%= @visit.care %>
+    </div></br>
+
+    </br>
+    <h4>Wnioski z wizyty</h4>
+    <hr>
+
+    <div>
+      <b>Wnioski na podstawie badania lekarskiego:</b></br>
+      <%= @visit.dsymptom %>
+    </div></br>
+
+    <div>
+      <b>Diagnoza:</b></br>
+      <%= @visit.illness %>
+    </div> </br>   
+      
+    <div>
+      <b>Przepisane leki:</b></br>
+      <%= @visit.drugs %>
+    </div> </br> 
+
+    <div>
+      <b>Data kolejnej wizyty:</b></br>
+      <%= @visit.next_visit %>
+    </div>  
+
+  </div>
+</div>

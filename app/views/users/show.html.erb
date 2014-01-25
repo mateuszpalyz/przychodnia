@@ -17,4 +17,33 @@
     </br>
     wiek: <%= @user.age  %>
   </aside>
+  <div class="span8">
+    <% unless current_user.admin? %>
+      </br>
+      </br>
+      <h3>Ostatnie wizyty </h3>
+      <ol class="microposts">
+        <% unless @user.visits.any? %>
+          brak
+        <% else %>
+          <% last_visits = @user.visits.find(:all, limit: 10) %>
+          <% last_visits.each do | one_visit | %>
+            <li>
+              <span class="content">
+                <b><%= "#{one_visit.patient.name} #{one_visit.patient.surname}"%></b>
+                <%= link_to "->", one_visit.patient %>
+              </span>
+              <span class="content"><b>Diagnoza:</b> <%= one_visit.illness %></span>
+              <span class="content"><b>Przepisane leki:</b> <%= one_visit.drugs %></span>
+              <span class="timestamp">
+                Data wizyty: <%= one_visit.created_at.strftime("%d.%m.%Y godz.%H:%M") %>
+              </span>
+              <%= link_to "więcej...", one_visit %>
+            </li>
+          <% end %>
+        <% end %>
+        
+      </ol>
+      <% end %>
+  </div>
 </div>
