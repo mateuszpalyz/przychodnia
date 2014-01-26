@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   before_action :admin_user,     only: [:index,:destroy, :new, :create]
 
   def index
-    @users = User.all
+    @users = User.order('users.created_at DESC').all
   end
 
   def show
