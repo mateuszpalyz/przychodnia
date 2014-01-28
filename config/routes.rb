@@ -6,6 +6,11 @@ Przychodnia::Application.routes.draw do
      get :index_my
     end
   end
+  resources :users do
+    collection do
+     get :calendar
+    end
+  end
   match '/find',    to: 'patients#find',       via: 'get'
   resources :users
   resources :patients
@@ -19,6 +24,13 @@ Przychodnia::Application.routes.draw do
   match '/about',   to: 'static_pages#about',  via: 'get'
   match '/for_patient', to: 'static_pages#for_patient', via: 'get'
   match '/check', to: 'static_pages#check', via: 'post'
+  
+  namespace :api do
+    resources :patients, :users, :sessions, :visits
+    match '/signin',  to: 'sessions#create', via: 'post'
+    match '/login',  to: 'sessions#loginpatient', via: 'post'
+    match '/patient/:id', to: 'patients#one', via: 'get'
+  end
 
 
   # The priority is based upon order of creation: first created -> highest priority.

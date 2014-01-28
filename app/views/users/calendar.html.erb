@@ -1,0 +1,23 @@
+<% provide(:title, 'Kalendarz') %>
+<h1>Kalendarz wizyt</h1>
+
+
+<div class="row">
+  <div class="span2">
+    <%= image_tag("calendar.png", alt: "calendar", class: "avatar") %>
+  </div>
+  
+  <div class="span10">
+    <ul class="users">
+      <% @visits.each do |visit| %>
+        <% if visit.next_visit %>
+          <% patient = visit.patient %>
+            <li>
+              <%= visit.next_visit.strftime("%d.%m.%Y godz.%H:%M") %>
+              <%= link_to "#{patient.name} #{patient.surname}" , patient_path(patient) %> 
+            </li>
+          <% end %>
+      <% end %>
+    </ul>
+  </div>
+</div>

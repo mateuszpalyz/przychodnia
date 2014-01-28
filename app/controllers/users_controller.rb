@@ -38,6 +38,10 @@ class UsersController < ApplicationController
     end
   end
 
+  def calendar
+    @visits = Visit.unscoped.order('next_visit').where(user_id: current_user.id)
+  end
+
   def destroy
     User.find(params[:id]).destroy
     flash[:success] = "Konto usunięte."
